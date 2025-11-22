@@ -13,7 +13,7 @@ import {
 } from '../services/storageService';
 
 // Hardcoded simple passkey for MVP demonstration
-const ADMIN_PASSKEY = "admin123";
+const ADMIN_PASSKEY = "9121";
 
 const AdminPanel: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
