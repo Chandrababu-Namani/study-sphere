@@ -17,7 +17,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onChangeView, isDarkMode, 
   ];
 
   return (
-    <nav className="bg-white dark:bg-zinc-900 shadow-sm sticky top-0 z-50 transition-colors duration-200 border-b border-gray-100 dark:border-zinc-800">
+    <nav className="bg-white dark:bg-zinc-900 shadow-sm sticky top-0 z-50 transition-colors duration-200 border-b border-gray-200 dark:border-zinc-800">
       <div className="max-w-[95%] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center cursor-pointer" onClick={() => onChangeView(AppView.HOME)}>
@@ -30,7 +30,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onChangeView, isDarkMode, 
              {currentView === AppView.HOME && (
                  <button
                     onClick={onRequestClick}
-                    className="hidden sm:flex items-center px-3 py-1.5 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-300 rounded-full text-sm font-medium hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors"
+                    className="hidden sm:flex items-center px-3 py-1.5 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors border border-indigo-100 dark:border-indigo-900/50"
                  >
                      <MessageSquarePlus size={16} className="mr-1.5" />
                      Request Resource
@@ -39,7 +39,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onChangeView, isDarkMode, 
 
              <button
               onClick={toggleDarkMode}
-              className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
+              className="p-2 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
               title="Toggle Dark Mode"
              >
                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
@@ -53,7 +53,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onChangeView, isDarkMode, 
                     className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap ${
                     currentView === item.id
                         ? 'bg-primary text-white shadow-md'
-                        : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-zinc-800 dark:hover:text-white'
+                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-zinc-800 dark:hover:text-white'
                     }`}
                 >
                     <span className="mr-2 hidden sm:inline">{item.icon}</span>

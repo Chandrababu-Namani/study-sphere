@@ -106,13 +106,13 @@ const App: React.FC = () => {
               
               {/* Centered Search Bar */}
               <div className="relative w-full max-w-2xl">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-6 w-6" />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 h-6 w-6" />
                 <input
                   type="text"
                   placeholder="Search resources..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-4 border border-gray-200 dark:border-zinc-800 rounded-full shadow-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none bg-white dark:bg-zinc-900 text-gray-900 dark:text-white text-lg transition-all hover:shadow-md placeholder-gray-400 dark:placeholder-zinc-600"
+                  className="w-full pl-12 pr-4 py-4 border border-gray-200 dark:border-zinc-800 rounded-full shadow-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none bg-white dark:bg-zinc-900 text-gray-900 dark:text-white text-lg transition-all hover:shadow-md placeholder-gray-500 dark:placeholder-zinc-600"
                 />
               </div>
               
@@ -126,8 +126,8 @@ const App: React.FC = () => {
                         onClick={() => setSelectedCategory(cat)}
                         className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                           selectedCategory === cat 
-                            ? 'bg-gray-900 dark:bg-white text-white dark:text-black shadow-md transform scale-105' 
-                            : 'bg-white dark:bg-zinc-900 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-zinc-800 hover:bg-gray-50 dark:hover:bg-zinc-800'
+                            ? 'bg-gray-800 dark:bg-white text-white dark:text-black shadow-md transform scale-105' 
+                            : 'bg-white dark:bg-zinc-900 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-zinc-800 hover:bg-gray-50 dark:hover:bg-zinc-800'
                         }`}
                       >
                         {cat}
@@ -138,7 +138,7 @@ const App: React.FC = () => {
                   {/* Sort Dropdown */}
                   <div className="relative">
                       <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                          <ArrowUpDown size={16} className="text-gray-400" />
+                          <ArrowUpDown size={16} className="text-gray-500" />
                       </div>
                       <select
                           value={sortBy}
@@ -159,7 +159,7 @@ const App: React.FC = () => {
 
             {/* Grid */}
             {isLoading ? (
-              <div className="text-center py-20 text-gray-500 dark:text-gray-400">Loading resources...</div>
+              <div className="text-center py-20 text-gray-600 dark:text-gray-400 font-medium">Loading resources...</div>
             ) : filteredResources.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pb-20">
                 {filteredResources.map((resource) => (
@@ -172,14 +172,14 @@ const App: React.FC = () => {
               </div>
             ) : (
               <div className="text-center py-20">
-                <div className="inline-block p-6 rounded-full bg-gray-100 dark:bg-zinc-900 mb-4">
+                <div className="inline-block p-6 rounded-full bg-white dark:bg-zinc-900 mb-4 shadow-sm">
                      <Search className="h-10 w-10 text-gray-400" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">No resources found</h3>
-                <p className="text-gray-500 dark:text-gray-400 mt-2">Try adjusting your search or filters.</p>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">No resources found</h3>
+                <p className="text-gray-600 dark:text-gray-400 mt-2">Try adjusting your search or filters.</p>
                 <button 
                     onClick={() => setIsRequestModalOpen(true)}
-                    className="mt-6 px-6 py-2 bg-primary text-white rounded-lg hover:bg-indigo-700 transition-colors"
+                    className="mt-6 px-6 py-2 bg-primary text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium shadow-sm"
                 >
                     Request a Resource
                 </button>
@@ -195,7 +195,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-black text-gray-900 dark:text-white font-sans flex flex-col transition-colors duration-200">
+    <div className="min-h-screen bg-gray-200 dark:bg-black text-gray-800 dark:text-white font-sans flex flex-col transition-colors duration-200">
       <Navbar 
         currentView={currentView} 
         onChangeView={setCurrentView} 

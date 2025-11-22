@@ -130,13 +130,13 @@ const AdminPanel: React.FC = () => {
   if (!isAuthenticated) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="bg-white dark:bg-zinc-900 p-8 rounded-2xl shadow-xl max-w-md w-full border border-gray-100 dark:border-zinc-800">
+        <div className="bg-white dark:bg-zinc-900 p-8 rounded-2xl shadow-xl max-w-md w-full border border-gray-200 dark:border-zinc-800">
           <div className="text-center mb-6">
             <div className="bg-red-100 dark:bg-red-900/30 p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <Lock className="h-8 w-8 text-red-500 dark:text-red-400" />
             </div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Admin Access</h2>
-            <p className="text-gray-500 dark:text-gray-400 mt-2">Please enter the passkey to manage resources.</p>
+            <p className="text-gray-600 dark:text-gray-400 mt-2 font-medium">Please enter the passkey to manage resources.</p>
           </div>
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
@@ -148,10 +148,10 @@ const AdminPanel: React.FC = () => {
                 className="w-full p-3 border border-gray-300 dark:border-zinc-700 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-all bg-white dark:bg-zinc-800 text-gray-900 dark:text-white placeholder-gray-400"
               />
             </div>
-            {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+            {error && <p className="text-red-500 text-sm text-center font-medium">{error}</p>}
             <button
               type="submit"
-              className="w-full bg-red-500 text-white py-3 rounded-lg font-semibold hover:bg-red-600 transition-colors shadow-md"
+              className="w-full bg-red-500 text-white py-3 rounded-lg font-bold hover:bg-red-600 transition-colors shadow-md"
             >
               Unlock Panel
             </button>
@@ -166,22 +166,22 @@ const AdminPanel: React.FC = () => {
       
       {/* Analytics Dashboard */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-zinc-800 flex items-center space-x-4">
+          <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-md border border-gray-200 dark:border-zinc-800 flex items-center space-x-4">
               <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-full text-blue-600 dark:text-blue-400">
                   <Eye size={24} />
               </div>
               <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">Total Views</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 font-semibold">Total Views</p>
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{totalViews}</h3>
               </div>
           </div>
 
-          <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-zinc-800 flex items-center space-x-4">
+          <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-md border border-gray-200 dark:border-zinc-800 flex items-center space-x-4">
               <div className="p-3 bg-rose-50 dark:bg-rose-900/20 rounded-full text-rose-600 dark:text-rose-400">
                   <Users size={24} />
               </div>
               <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">Live Users</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 font-semibold">Live Users</p>
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
                       {liveUserCount}
                       <span className="relative flex h-3 w-3">
@@ -192,26 +192,26 @@ const AdminPanel: React.FC = () => {
               </div>
           </div>
 
-          <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-zinc-800 flex items-center space-x-4">
+          <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-md border border-gray-200 dark:border-zinc-800 flex items-center space-x-4">
               <div className="p-3 bg-purple-50 dark:bg-purple-900/20 rounded-full text-purple-600 dark:text-purple-400">
                   <Layers size={24} />
               </div>
               <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">Total Resources</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 font-semibold">Total Resources</p>
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{totalResources}</h3>
               </div>
           </div>
 
-          <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-zinc-800 flex items-center space-x-4">
+          <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-md border border-gray-200 dark:border-zinc-800 flex items-center space-x-4">
               <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded-full text-green-600 dark:text-green-400">
                   <BarChart3 size={24} />
               </div>
               <div className="min-w-0">
-                  <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">Top Resource</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 font-semibold">Top Resource</p>
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white truncate" title={topResource?.title || 'N/A'}>
                       {topResource ? topResource.title : 'N/A'}
                   </h3>
-                  {topResource && <p className="text-xs text-green-500">{topResource.views} views</p>}
+                  {topResource && <p className="text-xs text-green-600 font-medium">{topResource.views} views</p>}
               </div>
           </div>
       </div>
@@ -220,14 +220,14 @@ const AdminPanel: React.FC = () => {
       <div className="flex border-b border-gray-200 dark:border-zinc-800">
           <button 
             onClick={() => setActiveTab('resources')}
-            className={`px-6 py-3 font-medium text-sm transition-colors relative ${activeTab === 'resources' ? 'text-primary' : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'}`}
+            className={`px-6 py-3 font-bold text-sm transition-colors relative ${activeTab === 'resources' ? 'text-primary' : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'}`}
           >
               Manage Resources
               {activeTab === 'resources' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-t-full"></div>}
           </button>
           <button 
             onClick={() => setActiveTab('requests')}
-            className={`px-6 py-3 font-medium text-sm transition-colors relative flex items-center gap-2 ${activeTab === 'requests' ? 'text-primary' : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'}`}
+            className={`px-6 py-3 font-bold text-sm transition-colors relative flex items-center gap-2 ${activeTab === 'requests' ? 'text-primary' : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'}`}
           >
               Requests
               {pendingRequests > 0 && <span className="bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">{pendingRequests}</span>}
@@ -238,7 +238,7 @@ const AdminPanel: React.FC = () => {
       {activeTab === 'resources' ? (
         <>
             {/* Upload Form */}
-            <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6 border border-gray-100 dark:border-zinc-800 animate-fade-in">
+            <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6 border border-gray-200 dark:border-zinc-800 animate-fade-in">
                 <div className="flex items-center mb-6 border-b border-gray-100 dark:border-zinc-800 pb-4">
                     <div className="bg-primary p-2 rounded-lg mr-3">
                         <Plus className="text-white h-5 w-5" />
@@ -249,7 +249,7 @@ const AdminPanel: React.FC = () => {
                 <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                     <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Title</label>
+                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">Title</label>
                     <input
                         required
                         type="text"
@@ -261,7 +261,7 @@ const AdminPanel: React.FC = () => {
                     </div>
                     
                     <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Category/Subject</label>
+                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">Category/Subject</label>
                     <input
                         required
                         type="text"
@@ -273,7 +273,7 @@ const AdminPanel: React.FC = () => {
                     </div>
 
                     <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Resource Type</label>
+                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">Resource Type</label>
                     <div className="flex space-x-4">
                         <label className={`flex items-center p-3 border rounded-lg cursor-pointer flex-1 justify-center transition-colors ${formData.type === ResourceType.PDF ? 'bg-indigo-50 dark:bg-indigo-900/20 border-primary text-primary' : 'border-gray-200 dark:border-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-800 text-gray-600 dark:text-gray-300'}`}>
                         <input
@@ -303,7 +303,7 @@ const AdminPanel: React.FC = () => {
 
                 <div className="space-y-4">
                     <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Description</label>
+                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">Description</label>
                     <textarea
                         required
                         value={formData.description}
@@ -315,7 +315,7 @@ const AdminPanel: React.FC = () => {
                     </div>
 
                     <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Content URL</label>
+                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">Content URL</label>
                     <input
                         required
                         type="url"
@@ -327,7 +327,7 @@ const AdminPanel: React.FC = () => {
                     </div>
 
                     <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 flex items-center">
+                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1 flex items-center">
                         <Image className="w-4 h-4 mr-1" /> Cover Image URL (Optional)
                     </label>
                     <input
@@ -353,17 +353,17 @@ const AdminPanel: React.FC = () => {
             </div>
 
             {/* Manage List */}
-            <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6 border border-gray-100 dark:border-zinc-800 animate-fade-in">
+            <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6 border border-gray-200 dark:border-zinc-800 animate-fade-in">
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Manage Existing Resources</h3>
                 <div className="overflow-x-auto">
                     <table className="min-w-full divide-y divide-gray-200 dark:divide-zinc-800">
                         <thead className="bg-gray-50 dark:bg-zinc-800">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Pin</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Title</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Type</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Views</th>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Actions</th>
+                                <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 dark:text-gray-300 uppercase tracking-wider">Pin</th>
+                                <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 dark:text-gray-300 uppercase tracking-wider">Title</th>
+                                <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 dark:text-gray-300 uppercase tracking-wider">Type</th>
+                                <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 dark:text-gray-300 uppercase tracking-wider">Views</th>
+                                <th className="px-6 py-3 text-right text-xs font-bold text-gray-500 dark:text-gray-300 uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white dark:bg-zinc-900 divide-y divide-gray-200 dark:divide-zinc-800">
@@ -372,19 +372,19 @@ const AdminPanel: React.FC = () => {
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <button 
                                             onClick={() => handlePin(r)}
-                                            className={`transition-colors ${r.isPinned ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-300 dark:text-zinc-600 hover:text-gray-400'}`}
+                                            className={`transition-colors ${r.isPinned ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-300 dark:text-zinc-600 hover:text-gray-500'}`}
                                             title="Toggle Pin"
                                         >
                                             <Pin size={18} className={r.isPinned ? 'fill-current' : ''} />
                                         </button>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white max-w-xs truncate" title={r.title}>{r.title}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-white max-w-xs truncate" title={r.title}>{r.title}</td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                                         <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${r.type === ResourceType.PDF ? 'bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-200' : 'bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-200'}`}>
                                             {r.type}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{r.views || 0}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 font-medium">{r.views || 0}</td>
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <button onClick={() => handleDelete(r.id)} className="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-300">
                                             <Trash2 size={18} />
@@ -399,7 +399,7 @@ const AdminPanel: React.FC = () => {
         </>
       ) : (
           /* Requests List */
-          <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6 border border-gray-100 dark:border-zinc-800 animate-fade-in">
+          <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6 border border-gray-200 dark:border-zinc-800 animate-fade-in">
               <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Student Requests</h3>
               {requestList.length === 0 ? (
                   <div className="text-center py-10 text-gray-500 dark:text-gray-400">
@@ -411,11 +411,11 @@ const AdminPanel: React.FC = () => {
                     {requestList.map(req => (
                         <div key={req.id} className="p-4 rounded-xl border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-800/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                             <div>
-                                <h4 className={`font-semibold ${req.status === 'completed' ? 'text-gray-500 dark:text-gray-400 line-through' : 'text-gray-900 dark:text-white'}`}>
+                                <h4 className={`font-bold ${req.status === 'completed' ? 'text-gray-500 dark:text-gray-400 line-through' : 'text-gray-900 dark:text-white'}`}>
                                     {req.title}
                                 </h4>
-                                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{req.details}</p>
-                                <p className="text-xs text-gray-400 mt-2">{new Date(req.createdAt).toLocaleDateString()}</p>
+                                <p className="text-sm text-gray-700 dark:text-gray-400 mt-1">{req.details}</p>
+                                <p className="text-xs text-gray-500 mt-2 font-medium">{new Date(req.createdAt).toLocaleDateString()}</p>
                             </div>
                             <div className="flex items-center gap-2">
                                 <button
@@ -430,7 +430,7 @@ const AdminPanel: React.FC = () => {
                                 </button>
                                 <button 
                                     onClick={() => handleDeleteRequest(req.id)}
-                                    className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                                    className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
                                 >
                                     <Trash2 size={18} />
                                 </button>
