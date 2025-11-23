@@ -97,7 +97,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource, onView }) => {
             </div>
         )}
 
-        {/* Type Badge */}
+        {/* Type Badge (Image Overlay) */}
         <div className={`absolute top-3 right-3 z-20 text-xs font-bold px-2 py-1 rounded shadow-lg ${
             resource.type === ResourceType.PDF 
             ? 'bg-red-600 text-white' 
@@ -137,10 +137,16 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource, onView }) => {
         )}
       
       <div className="p-5 flex flex-col flex-grow">
-        <div className="flex items-center justify-between mb-2">
-            <span className="px-2 py-1 bg-indigo-50 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 text-xs font-bold rounded-full uppercase tracking-wide">
-            {resource.category}
-            </span>
+        <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-2">
+                <span className="px-2 py-1 bg-indigo-50 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 text-xs font-bold rounded-full uppercase tracking-wide">
+                    {resource.category}
+                </span>
+                <span className={`flex items-center gap-1 text-[10px] font-bold px-1.5 py-0.5 rounded border ${resource.type === ResourceType.PDF ? 'text-red-600 border-red-200 dark:border-red-900/30' : 'text-blue-600 border-blue-200 dark:border-blue-900/30'}`}>
+                     {resource.type === ResourceType.PDF ? <FileText size={10}/> : <Video size={10}/>}
+                     {resource.type}
+                </span>
+            </div>
             <div className="flex items-center space-x-1 text-gray-600 dark:text-zinc-500">
                 <Eye size={14} />
                 <span className="text-xs font-medium">{resource.views || 0}</span>
@@ -179,7 +185,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource, onView }) => {
             }}
             className="inline-flex items-center justify-center px-3 py-1.5 bg-gray-100 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 text-gray-700 dark:text-gray-300 rounded-md text-xs font-semibold hover:bg-primary hover:text-white hover:border-primary dark:hover:bg-primary transition-colors"
             >
-             Open
+             Open {resource.type}
             </button>
         </div>
       </div>

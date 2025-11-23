@@ -121,9 +121,6 @@ const AdminPanel: React.FC = () => {
 
   // Analytics Calculations
   const totalResources = resourceList.length;
-  const topResource = resourceList.reduce((prev, current) => {
-      return ((prev.views || 0) > (current.views || 0)) ? prev : current
-  }, resourceList[0] || null);
   const pendingRequests = requestList.filter(r => r.status === 'pending').length;
 
   if (!isAuthenticated) {
@@ -164,7 +161,7 @@ const AdminPanel: React.FC = () => {
     <div className="space-y-8">
       
       {/* Analytics Dashboard */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-md border border-gray-200 dark:border-zinc-800 flex items-center space-x-4">
               <div className="p-3 bg-rose-50 dark:bg-rose-900/20 rounded-full text-rose-600 dark:text-rose-400">
                   <Users size={24} />
@@ -188,19 +185,6 @@ const AdminPanel: React.FC = () => {
               <div>
                   <p className="text-sm text-gray-600 dark:text-gray-400 font-semibold">Total Resources</p>
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{totalResources}</h3>
-              </div>
-          </div>
-
-          <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-md border border-gray-200 dark:border-zinc-800 flex items-center space-x-4">
-              <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded-full text-green-600 dark:text-green-400">
-                  <BarChart3 size={24} />
-              </div>
-              <div className="min-w-0">
-                  <p className="text-sm text-gray-600 dark:text-gray-400 font-semibold">Top Resource</p>
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white truncate" title={topResource?.title || 'N/A'}>
-                      {topResource ? topResource.title : 'N/A'}
-                  </h3>
-                  {topResource && <p className="text-xs text-green-600 font-medium">{topResource.views} views</p>}
               </div>
           </div>
       </div>
@@ -330,11 +314,11 @@ const AdminPanel: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="mt-6 flex justify-end">
+                    <div className="mt-8">
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className={`bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors shadow-lg w-full md:w-auto ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            className={`w-full bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors shadow-lg ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                         >
                             {isSubmitting ? 'Saving...' : 'Add Resource'}
                         </button>
