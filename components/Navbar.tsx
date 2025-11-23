@@ -22,7 +22,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onChangeView, isDarkMode, 
         <div className="flex justify-between h-16">
           <div className="flex items-center cursor-pointer" onClick={() => onChangeView(AppView.HOME)}>
             <BookOpen className="h-8 w-8 text-primary dark:text-indigo-400" />
-            <span className="ml-2 text-xl font-bold text-gray-900 dark:text-white">Study Sphere</span>
+            <span className="ml-2 text-xl font-bold text-gray-900 dark:text-white">My Study Sphere</span>
           </div>
           
           <div className="flex items-center gap-2 md:gap-4">

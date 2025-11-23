@@ -97,6 +97,15 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource, onView }) => {
             </div>
         )}
 
+        {/* Type Badge */}
+        <div className={`absolute top-3 right-3 z-20 text-xs font-bold px-2 py-1 rounded shadow-lg ${
+            resource.type === ResourceType.PDF 
+            ? 'bg-red-600 text-white' 
+            : 'bg-blue-600 text-white'
+        }`}>
+            {resource.type}
+        </div>
+
         {thumbnail ? (
             <div className="relative h-48 w-full overflow-hidden bg-gray-100 dark:bg-zinc-950">
                 <img 

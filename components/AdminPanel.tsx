@@ -120,7 +120,6 @@ const AdminPanel: React.FC = () => {
   }
 
   // Analytics Calculations
-  const totalViews = resourceList.reduce((acc, curr) => acc + (curr.views || 0), 0);
   const totalResources = resourceList.length;
   const topResource = resourceList.reduce((prev, current) => {
       return ((prev.views || 0) > (current.views || 0)) ? prev : current
@@ -165,17 +164,7 @@ const AdminPanel: React.FC = () => {
     <div className="space-y-8">
       
       {/* Analytics Dashboard */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-md border border-gray-200 dark:border-zinc-800 flex items-center space-x-4">
-              <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-full text-blue-600 dark:text-blue-400">
-                  <Eye size={24} />
-              </div>
-              <div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 font-semibold">Total Views</p>
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{totalViews}</h3>
-              </div>
-          </div>
-
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-md border border-gray-200 dark:border-zinc-800 flex items-center space-x-4">
               <div className="p-3 bg-rose-50 dark:bg-rose-900/20 rounded-full text-rose-600 dark:text-rose-400">
                   <Users size={24} />
@@ -246,100 +235,102 @@ const AdminPanel: React.FC = () => {
                     <h2 className="text-xl font-bold text-gray-900 dark:text-white">Add Link Resource</h2>
                 </div>
                 
-                <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-4">
-                    <div>
-                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">Title</label>
-                    <input
-                        required
-                        type="text"
-                        value={formData.title}
-                        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                        className="w-full p-2.5 border border-gray-300 dark:border-zinc-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none bg-white dark:bg-zinc-800 text-gray-900 dark:text-white placeholder-gray-400"
-                        placeholder="e.g., Calculus 101"
-                    />
-                    </div>
-                    
-                    <div>
-                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">Category/Subject</label>
-                    <input
-                        required
-                        type="text"
-                        value={formData.category}
-                        onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                        className="w-full p-2.5 border border-gray-300 dark:border-zinc-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none bg-white dark:bg-zinc-800 text-gray-900 dark:text-white placeholder-gray-400"
-                        placeholder="e.g., Mathematics"
-                    />
-                    </div>
+                <form onSubmit={handleSubmit}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-4">
+                            <div>
+                            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">Title</label>
+                            <input
+                                required
+                                type="text"
+                                value={formData.title}
+                                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                                className="w-full p-2.5 border border-gray-300 dark:border-zinc-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none bg-white dark:bg-zinc-800 text-gray-900 dark:text-white placeholder-gray-400"
+                                placeholder="e.g., Calculus 101"
+                            />
+                            </div>
+                            
+                            <div>
+                            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">Category/Subject</label>
+                            <input
+                                required
+                                type="text"
+                                value={formData.category}
+                                onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                                className="w-full p-2.5 border border-gray-300 dark:border-zinc-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none bg-white dark:bg-zinc-800 text-gray-900 dark:text-white placeholder-gray-400"
+                                placeholder="e.g., Mathematics"
+                            />
+                            </div>
 
-                    <div>
-                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">Resource Type</label>
-                    <div className="flex space-x-4">
-                        <label className={`flex items-center p-3 border rounded-lg cursor-pointer flex-1 justify-center transition-colors ${formData.type === ResourceType.PDF ? 'bg-indigo-50 dark:bg-indigo-900/20 border-primary text-primary' : 'border-gray-200 dark:border-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-800 text-gray-600 dark:text-gray-300'}`}>
-                        <input
-                            type="radio"
-                            name="type"
-                            value={ResourceType.PDF}
-                            checked={formData.type === ResourceType.PDF}
-                            onChange={() => setFormData({ ...formData, type: ResourceType.PDF })}
-                            className="hidden"
-                        />
-                        <FileText className="mr-2 h-4 w-4" /> PDF Link
-                        </label>
-                        <label className={`flex items-center p-3 border rounded-lg cursor-pointer flex-1 justify-center transition-colors ${formData.type === ResourceType.VIDEO ? 'bg-indigo-50 dark:bg-indigo-900/20 border-primary text-primary' : 'border-gray-200 dark:border-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-800 text-gray-600 dark:text-gray-300'}`}>
-                        <input
-                            type="radio"
-                            name="type"
-                            value={ResourceType.VIDEO}
-                            checked={formData.type === ResourceType.VIDEO}
-                            onChange={() => setFormData({ ...formData, type: ResourceType.VIDEO })}
-                            className="hidden"
-                        />
-                        <Video className="mr-2 h-4 w-4" /> Video Link
-                        </label>
-                    </div>
-                    </div>
-                </div>
+                            <div>
+                            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">Resource Type</label>
+                            <div className="flex space-x-4">
+                                <label className={`flex items-center p-3 border rounded-lg cursor-pointer flex-1 justify-center transition-colors ${formData.type === ResourceType.PDF ? 'bg-indigo-50 dark:bg-indigo-900/20 border-primary text-primary' : 'border-gray-200 dark:border-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-800 text-gray-600 dark:text-gray-300'}`}>
+                                <input
+                                    type="radio"
+                                    name="type"
+                                    value={ResourceType.PDF}
+                                    checked={formData.type === ResourceType.PDF}
+                                    onChange={() => setFormData({ ...formData, type: ResourceType.PDF })}
+                                    className="hidden"
+                                />
+                                <FileText className="mr-2 h-4 w-4" /> PDF Link
+                                </label>
+                                <label className={`flex items-center p-3 border rounded-lg cursor-pointer flex-1 justify-center transition-colors ${formData.type === ResourceType.VIDEO ? 'bg-indigo-50 dark:bg-indigo-900/20 border-primary text-primary' : 'border-gray-200 dark:border-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-800 text-gray-600 dark:text-gray-300'}`}>
+                                <input
+                                    type="radio"
+                                    name="type"
+                                    value={ResourceType.VIDEO}
+                                    checked={formData.type === ResourceType.VIDEO}
+                                    onChange={() => setFormData({ ...formData, type: ResourceType.VIDEO })}
+                                    className="hidden"
+                                />
+                                <Video className="mr-2 h-4 w-4" /> Video Link
+                                </label>
+                            </div>
+                            </div>
+                        </div>
 
-                <div className="space-y-4">
-                    <div>
-                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">Description</label>
-                    <textarea
-                        required
-                        value={formData.description}
-                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                        rows={4}
-                        className="w-full p-2.5 border border-gray-300 dark:border-zinc-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none bg-white dark:bg-zinc-800 text-gray-900 dark:text-white placeholder-gray-400"
-                        placeholder="Brief summary of the content..."
-                    />
-                    </div>
+                        <div className="space-y-4">
+                            <div>
+                            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">Description</label>
+                            <textarea
+                                required
+                                value={formData.description}
+                                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                                rows={4}
+                                className="w-full p-2.5 border border-gray-300 dark:border-zinc-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none bg-white dark:bg-zinc-800 text-gray-900 dark:text-white placeholder-gray-400"
+                                placeholder="Brief summary of the content..."
+                            />
+                            </div>
 
-                    <div>
-                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">Content URL</label>
-                    <input
-                        required
-                        type="url"
-                        value={formData.url}
-                        onChange={(e) => setFormData({ ...formData, url: e.target.value })}
-                        className="w-full p-2.5 border border-gray-300 dark:border-zinc-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none bg-white dark:bg-zinc-800 text-gray-900 dark:text-white placeholder-gray-400"
-                        placeholder="Paste Google Drive or YouTube Link"
-                    />
-                    </div>
+                            <div>
+                            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">Content URL</label>
+                            <input
+                                required
+                                type="url"
+                                value={formData.url}
+                                onChange={(e) => setFormData({ ...formData, url: e.target.value })}
+                                className="w-full p-2.5 border border-gray-300 dark:border-zinc-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none bg-white dark:bg-zinc-800 text-gray-900 dark:text-white placeholder-gray-400"
+                                placeholder="Paste Google Drive or YouTube Link"
+                            />
+                            </div>
 
-                    <div>
-                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1 flex items-center">
-                        <Image className="w-4 h-4 mr-1" /> Cover Image URL (Optional)
-                    </label>
-                    <input
-                        type="url"
-                        value={formData.thumbnailUrl}
-                        onChange={(e) => setFormData({ ...formData, thumbnailUrl: e.target.value })}
-                        className="w-full p-2.5 border border-gray-300 dark:border-zinc-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none bg-white dark:bg-zinc-800 text-gray-900 dark:text-white placeholder-gray-400"
-                        placeholder="https://example.com/image.jpg"
-                    />
+                            <div>
+                            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1 flex items-center">
+                                <Image className="w-4 h-4 mr-1" /> Cover Image URL (Optional)
+                            </label>
+                            <input
+                                type="url"
+                                value={formData.thumbnailUrl}
+                                onChange={(e) => setFormData({ ...formData, thumbnailUrl: e.target.value })}
+                                className="w-full p-2.5 border border-gray-300 dark:border-zinc-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none bg-white dark:bg-zinc-800 text-gray-900 dark:text-white placeholder-gray-400"
+                                placeholder="https://example.com/image.jpg"
+                            />
+                            </div>
+                        </div>
                     </div>
-
-                    <div className="flex justify-end items-end h-full pb-1 pt-4">
+                    <div className="mt-6 flex justify-end">
                         <button
                             type="submit"
                             disabled={isSubmitting}
@@ -348,7 +339,6 @@ const AdminPanel: React.FC = () => {
                             {isSubmitting ? 'Saving...' : 'Add Resource'}
                         </button>
                     </div>
-                </div>
                 </form>
             </div>
 
